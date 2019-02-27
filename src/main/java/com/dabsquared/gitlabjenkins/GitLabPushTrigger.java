@@ -446,8 +446,10 @@ public class GitLabPushTrigger extends Trigger<Job<?, ?>> {
         ParametersDefinitionProperty definitionProperty = job.getProperty(ParametersDefinitionProperty.class);
 
         if (definitionProperty != null) {
-            for (ParameterDefinition definition : definitionProperty.getParameterDefinitions()) {
-                values.put(definition.getName(), definition.getDefaultParameterValue());
+            if (definitionProperty.getParameterDefinitions() != null) {
+                for (ParameterDefinition definition : definitionProperty.getParameterDefinitions()) {
+                    values.put(definition.getName(), definition.getDefaultParameterValue());
+                }
             }
         }
 
